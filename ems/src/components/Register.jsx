@@ -1,7 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // ✅
-
+import { useNavigate } from "react-router-dom"; 
 const Register = () => {
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
@@ -9,7 +8,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [role, setrole] = useState("");
 
-  const navigate = useNavigate(); // ✅
+  const navigate = useNavigate(); 
 
   async function handleRegister(event) {
     event.preventDefault();
@@ -19,12 +18,12 @@ const Register = () => {
         email,
         userName,
         password,
-        roleNames: [role] // your backend expects roleNames array
+        roleNames: [role] 
       });
       console.log(response.data);
       alert("Registered Successfully");
 
-      navigate("/login"); // ✅ go to login after registration
+      navigate("/login"); 
     } catch (e) {
       console.log("Register Error", e);
       alert("Registration failed");
@@ -32,7 +31,8 @@ const Register = () => {
   }
 
   return (
-    <div>
+    <section>
+      <div className="register-card">
       <h2>Register</h2>
       <form onSubmit={handleRegister}>
         <label>Name</label>
@@ -52,7 +52,8 @@ const Register = () => {
 
         <button type="submit">Register</button>
       </form>
-    </div>
+      </div>
+    </section>
   );
 };
 

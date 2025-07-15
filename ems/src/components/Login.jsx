@@ -1,49 +1,64 @@
+
+
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  async function handleLogin(event){
+  const navigate = useNavigate();
+
+  async function handleLogin(event) {
     event.preventDefault();
-    try{
-        const token = await axios.post("http://localhost:8080/api/auth/login",{userName,password})
-        console.log(token);
-        alert("Login Successful")
-    } catch (e){
-        console.log("Login Error", e);
-        alert("Invalid Cred")
+    try {
+      const response = await axios.post("http://localhost:8080/api/auth/login", {
+        userName,
+        password,
+      });
+
+      const token = response.data;
+      console.log("Token received:", token);
+
+      if (token) {
+        localStorage.setItem("token", token);
+        alert("Login Successful");
+        navigate("/dashboard");
+      } else {
+        alert("Login failed: Token not received");
+      }
+    } catch (e) {
+      console.error("Login Error:", e);
+      alert("Invalid Credentials");
     }
-    console.log("Form Submitted");
   }
+
   return (
-    <div>
-      <h2>Login</h2>
-      <div>
+    <section>
+      <div className="login-card">
+        <h2>Login</h2>
         <form onSubmit={handleLogin}>
-          <label htmlFor="userName">User Name</label>
+          <label>User Name</label>
           <input
-            id="userName"
-            name="userName"
             value={userName}
             type="text"
             onChange={(e) => setUserName(e.target.value)}
           />
-          <br /> <br />
-          <label htmlFor="password">Password</label>
+          <br /><br />
+          <label>Password</label>
           <input
-            id="password"
-            name="password"
             value={password}
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <br />
-          <br />
+          <br /><br />
           <button type="submit">Login</button>
         </form>
+        <br />
+        <p>New here? <Link to="/register">Register here</Link></p>
       </div>
-    </div>
+    </section>
   );
 };
+
 export default Login;
