@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -10,15 +11,22 @@ const Navbar = () => {
   };
 
   return (
-    <nav style={{ padding: "1rem", backgroundColor: "#f0f0f0", display: "flex", justifyContent: "space-between" }}>
-      <h2>Employee Management System</h2>
-      {token ? (
-        <button onClick={handleLogout}>Login</button>
-      ) : (
-        <Link to="/login">
-          <button>Login</button>
-        </Link>
-      )}
+    <nav className="navbar">
+      <div className="navbar-left">
+        <h2>Employee Management System</h2>
+      </div>
+      <div className="navbar-right">
+        <Link to="/employees">Employees</Link>
+        <Link to="/add-employee">AddEmployee</Link>
+        {!token ? (
+          <>
+            <Link to="/login">Login</Link>
+            {/* <Link to="/register">Register</Link> */}
+          </>
+        ) : (
+          <button onClick={handleLogout} className="logout-btn">Logout</button>
+        )}
+      </div>
     </nav>
   );
 };

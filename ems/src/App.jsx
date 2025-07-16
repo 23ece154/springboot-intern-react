@@ -1,19 +1,23 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Register from "./components/Register";
+import Navbar from "./components/Navbar";
 import Login from "./components/Login";
-import Dashboard from "./components/Dashboard";
+import Register from "./components/Register";
+import Add from "./components/AddEmployee";
+import Employees from "./components/Employees";
 
-function App() {
+const App = () => {
   return (
     <Router>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/employees" element={<Employees />} />
+        <Route path="/add-employee" element={<Add />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<h2 style={{ padding: "2rem" }}>Welcome to the Employee Management System!</h2>} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

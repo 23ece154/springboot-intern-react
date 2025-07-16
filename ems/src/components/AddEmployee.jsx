@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom"; 
 import "../styles/AuthForm.css";
 
-const Register = () => {
+
+const Add = () => {
   const [name, setname] = useState("");
   const [email, setemail] = useState("");
   const [userName, setUserName] = useState("");
@@ -23,19 +24,18 @@ const Register = () => {
         roleNames: [role] 
       });
       console.log(response.data);
-      alert("Registered Successfully");
-
-      navigate("/login"); 
+      alert("Employee added Successfully");
+ 
     } catch (e) {
-      console.log("Register Error", e);
-      alert("Registration failed");
+      console.log("employee post Error", e);
+      alert("Employee post method failed");
     }
   }
 
   return (
     <section >
       <div className="auth-card">
-      <h2>Register</h2>
+      <h2>Add Employee</h2>
       <form onSubmit={handleRegister}>
         <label>Name</label>
         <input type="text" value={name} onChange={(e) => setname(e.target.value)} /><br />
@@ -52,13 +52,11 @@ const Register = () => {
         <label>Role</label>
         <input type="text" value={role} onChange={(e) => setrole(e.target.value)} /><br /><br />
 
-        <button type="submit">Register</button>
+        <button type="submit">Add Employee</button>
       </form>
       </div>
     </section>
   );
 };
 
-export default Register;
-
-
+export default Add;

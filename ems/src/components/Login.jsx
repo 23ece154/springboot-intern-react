@@ -1,8 +1,7 @@
-
-
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import "../styles/AuthForm.css";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
@@ -34,8 +33,8 @@ const Login = () => {
   }
 
   return (
-    <section>
-      <div className="login-card">
+    <section >
+      <div className="auth-card">
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <label>User Name</label>
@@ -62,3 +61,4 @@ const Login = () => {
 };
 
 export default Login;
+
