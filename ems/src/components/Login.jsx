@@ -16,13 +16,12 @@ const Login = () => {
         password,
       });
 
-      const token = response.data;
-      console.log("Token received:", token);
+      const token = response.data.token; 
 
       if (token) {
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", token); 
         alert("Login Successful");
-        navigate("/dashboard");
+        navigate("/employees"); 
       } else {
         alert("Login failed: Token not received");
       }
@@ -33,7 +32,7 @@ const Login = () => {
   }
 
   return (
-    <section >
+    <section>
       <div className="auth-card">
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
@@ -61,4 +60,3 @@ const Login = () => {
 };
 
 export default Login;
-
